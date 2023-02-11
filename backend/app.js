@@ -29,8 +29,10 @@ mongoose.connect(MY_MONGODBURL,
 // ajouter les differants plugins à notre application express 
 app.use(express.json());
 app.use(rateLimit);
+
 // on configure quelques regle de cross control  
 app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
     // on indique que les ressources peuvent être partagées depuis n'importe quelle origine
     res.setHeader('Access-Control-Allow-Origin', '*');
     // on indique les entêtes qui seront utilisées après la pré-vérification cross-origin afin de donner l'autorisation

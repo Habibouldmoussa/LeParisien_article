@@ -1,18 +1,16 @@
 // Importation des models et des plugin nécessaire 
-const article = require('../models/article');
+const Article = require('../models/article');
 const fs = require('fs');
 //-----------------------------------------------
 // Création des articles 
 exports.createArticle = (req, res, next) => {
-    const articleObject = JSON.parse(req.body.article);
-    console.log(req.body.article)
-    //const articleObject = JSON.parse(req.body);
+    const articleObject = JSON.parse(req.body.Article);
+    console.log(articleObject)
     // on supprime les données redondente 
-    delete articleObject._id;
-    //delete articleObject._userId;
-    // On verifie si le multer renvoi un fichier valide sinon on remplace par une image par default 
-    let filename = (req.file != undefined) ? req.file.filename : 'default.jpg';
-    const article = new article({
+    //delete articleObject._id;
+    // On verifie si le multer renvoi un fichier valide sinon on remplace par une image par default  
+    let filename = (req.file != undefined) ? req.file.filename : 'default.png';
+    const article = new Article({
         ...articleObject,
         //userId: req.auth.userId,
         image: `${req.protocol}://${req.get('host')}/images/${filename}`
@@ -24,7 +22,7 @@ exports.createArticle = (req, res, next) => {
 };
 // Récuperation d'une seule article
 exports.getOneArticle = (req, res, next) => {
-    article.findOne({ _id: req.params.id })
+    Article.findOne({ _id: req.params.id })
         .then(article => res.status(200).json(article))
         .catch(error => res.status(404).json({ error: error }));
 };
@@ -36,7 +34,7 @@ exports.modifyArticle = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };
     delete articleObject._userId;
-    article.findOne({ _id: req.params.id })
+    Article.findOne({ _id: req.params.id })
         .then((article) => {
             if (article.userId != req.auth.userId) {
                 res.status(403).json({ message: 'unauthorized request' });
@@ -63,7 +61,7 @@ exports.modifyArticle = (req, res, next) => {
 };
 // suppression de l'article 
 exports.deleteArticle = (req, res, next) => {
-    article.findOne({ _id: req.params.id })
+    Article.findOne({ _id: req.params.id })
         .then(article => {
             if (article.userId != req.auth.userId) {
                 res.status(403).json({ message: 'unauthorized request' });
@@ -87,7 +85,7 @@ exports.deleteArticle = (req, res, next) => {
 };
 // On affiche la totalité des articles de la base de donnée
 exports.getAllArticle = (req, res, next) => {
-    article.find()
+    Article.find()
         .then(articles => res.status(200).json(articles))
         .catch(error => res.status(400).json({ error: error }));
 };
