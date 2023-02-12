@@ -7,7 +7,8 @@ const multer = require('../middleware/multer-config');
 
 // On apprlique les méthodes et les middlewares necessaire et les controlleurs pour chaque routes  
 router.get('/', articleCtrl.getAllArticle);
-router.post('/', multer, articleCtrl.createArticle);
+router.get('/q/:slug', articleCtrl.getArticleBySlug);
+router.post('/', auth, multer, articleCtrl.createArticle);
 router.get('/:id', articleCtrl.getOneArticle);
 router.put('/:id', auth, multer, articleCtrl.modifyArticle);
 router.delete('/:id', auth, articleCtrl.deleteArticle);

@@ -13,6 +13,7 @@ dotenv.config();
 const path = require('path');
 
 const articlesRoutes = require('./routes/article');
+const userRoutes = require('./routes/user');
 const rateLimit = require('./models/limitrate')
 // Url de la base de donnée 
 const MY_MONGODBURL = process.env.MONGODB_URL;
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 });
 // Création des routes 
 app.use('/articles', articlesRoutes);
+app.use('/users', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
