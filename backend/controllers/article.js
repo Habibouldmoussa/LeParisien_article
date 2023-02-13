@@ -30,7 +30,7 @@ exports.modifyArticle = (req, res, next) => {
     const articleObject = req.file && req.file != undefined ? {
         ...JSON.parse(req.body.Article),
         image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...JSON.parse(req.body.Article), image: "http://localhost:4200/images/default.png" };
+    } : { ...JSON.parse(req.body.Article) };
     //console.log(articleObject)
     Article.findOne({ _id: req.params.id })
         .then((article) => {

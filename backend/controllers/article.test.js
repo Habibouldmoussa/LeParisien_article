@@ -25,7 +25,6 @@ describe('Article Controller', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
-
     describe('createArticle', () => {
         it('should create an article', async () => {
             await createArticle(req, res, next);
@@ -34,7 +33,6 @@ describe('Article Controller', () => {
             expect(res.json).toHaveBeenCalledWith({ message: 'article enregistré !' });
         });
     });
-
     describe('getOneArticle', () => {
         it('should return a single article', async () => {
             const article = { title: 'Test Article', slug: 'Test-Article', body: 'Test Content', image: 'http://localhost:4200/images/default.png', };
@@ -87,7 +85,6 @@ describe('Article Controller', () => {
             expect(updatedArticle.description).toBe('This is a modified test article');
         });
     });
-
     describe('deleteArticle', () => {
         let article;
         beforeEach(async () => {
@@ -109,7 +106,6 @@ describe('Article Controller', () => {
             expect(deletedArticle).toBeNull();
         });
     });
-
     describe('getAllArticle', () => {
         beforeEach(async () => {
             await Article.create({
