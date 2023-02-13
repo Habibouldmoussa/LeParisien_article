@@ -16,7 +16,7 @@ const filterImage = (req, file, callback) => {
     callback(null, false);
 };
 /* Si l'image est correct on sauvgrde cette derniere dans notre dossier images  
-* ne pas ometre de placer une image par defaut appelé default.jpg dans le cas contraire 
+* ne pas ometre de placer une image par defaut appelé default.png dans le cas contraire 
 */
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {

@@ -4,9 +4,12 @@ const app = express();
 const mongoose = require('mongoose');
 /* Récuperation du token dans les variable d'environement  
 * le fichier d'environement .env doit contenir : 
-* MONGODB_URL : l'url de mongodb 
 * PORT : le port de l'API qui 3000 par defaut
-* APP_SECRET : le phrase secret pour le token
+* PORT= 4200
+* MONGODB_URL = "lien de connexion a votre base de donnée"
+* LOGIN = "login admin"
+* PASS = "pass admin"
+* APP_SECRET="chaine de caractaire pour encoder le token"
 */
 const dotenv = require("dotenv");
 dotenv.config();
