@@ -36,7 +36,7 @@ app.use(rateLimit);
 
 // on configure quelques regle de cross control  
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
+    res.setHeader("Access-Control-Allow-Origin", "https://le-parisien-front.vercel.app/");
     // on indique que les ressources peuvent être partagées depuis n'importe quelle origine
     res.setHeader('Access-Control-Allow-Origin', '*');
     // on indique les entêtes qui seront utilisées après la pré-vérification cross-origin afin de donner l'autorisation
