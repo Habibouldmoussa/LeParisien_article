@@ -69,5 +69,5 @@ APP_SECRET="chaine de caractaire pour encoder le token"
 lien de l'api :
 
 ```
-http://localhost:4200/
+https://article-lp-api.onrender.com/articles/
 ```
