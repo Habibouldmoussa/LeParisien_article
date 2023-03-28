@@ -3,7 +3,7 @@
 * Pour la securité des requetes il est preferable de configuré le serveur en HTTPS lors de la mise en production vous pouvez suivre le tuto ci dessus pour des tests en local 
 * const https = require('https');
 */
-const http = require('https');
+const http = require('http');
 const app = require('./app');
 //---------------------------------------------------------
 // Normalisation du port 
