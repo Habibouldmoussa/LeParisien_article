@@ -19,7 +19,7 @@ exports.login = (req, res, next) => {
         // si le mot de passe coresspond on donne un token au client 
         res.status(200).json({
             token: jwt.sign(
-                { login: "recruteur" },
+                { login: LOGIN },
                 APP_SECRET,
                 { expiresIn: '24h' }
             )

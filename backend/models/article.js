@@ -2,9 +2,10 @@
 const mongoose = require('mongoose');
 // Le schema de la table de article de la base de donnée 
 const articleSchema = mongoose.Schema({
-    time: { type: String, required: true },
-    aquis: { type: String, required: true },
-
+    title: { type: String, required: true },
+    slug: { type: String, required: true },
+    body: { type: String, required: true },
+    image: { type: String }
 });
 
 module.exports = mongoose.model('Article', articleSchema);
