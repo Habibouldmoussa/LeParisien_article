@@ -26,7 +26,7 @@ exports.createArticle = (req, res, next) => {
     article.save()
         .then(() => { res.status(201).json({ message: 'article enregistré !' }) })
         .catch(error => { res.status(400).json({ error }) })
-
+    cache.clear()
 };
 
 /* Récuperation d'une seule article
