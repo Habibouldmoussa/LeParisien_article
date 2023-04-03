@@ -1,6 +1,8 @@
 // Importation des models et des plugin nécessaire 
 const Article = require('../models/article');
 const fs = require('fs');
+const apicache = require('apicache')
+let cache = apicache.middleware
 //-----------------------------------------------
 
 /* Création des articles 
@@ -24,6 +26,7 @@ exports.createArticle = (req, res, next) => {
     article.save()
         .then(() => { res.status(201).json({ message: 'article enregistré !' }) })
         .catch(error => { res.status(400).json({ error }) })
+
 };
 
 /* Récuperation d'une seule article
@@ -49,7 +52,7 @@ exports.getOneArticle = (req, res, next) => {
 *@return { JSON } message
 */
 exports.modifyArticle = (req, res, next) => {
-    console.log(req)
+    //console.log(req)
     //On vérifie si une image est uploadée 
     const articleObject = req.file && req.file != undefined ? {
         ...JSON.parse(req.body.Article),
@@ -72,6 +75,7 @@ exports.modifyArticle = (req, res, next) => {
             Article.updateOne({ _id: req.params.id }, { ...articleObject, _id: req.params.id })
                 .then(() => res.status(200).json({ message: 'article modifié!' }))
                 .catch(error => res.status(401).json({ error }));
+            cache.clear()
         })
         .catch((error) => {
             res.status(400).json({ error });
@@ -100,6 +104,7 @@ exports.deleteArticle = (req, res, next) => {
             Article.deleteOne({ _id: req.params.id })
                 .then(() => { res.status(200).json({ message: 'article supprimé !' }) })
                 .catch(error => res.status(401).json({ error }));
+            cache.clear()
         }).catch(error => {
             res.status(500).json({ error });
         });

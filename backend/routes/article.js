@@ -7,7 +7,7 @@ const multer = require('../middleware/multer-config');
 const apicache = require('apicache')
 let cache = apicache.middleware
 // On apprlique les méthodes et les middlewares necessaire et les controlleurs pour chaque routes  
-router.get('/', cache("10 minutes"), articleCtrl.getAllArticle);
+router.get('/', cache("1 minutes"), articleCtrl.getAllArticle);
 router.get('/q/:slug', articleCtrl.getArticleBySlug);
 router.post('/', auth, multer, articleCtrl.createArticle);
 router.get('/:id', cache("1 minutes"), articleCtrl.getOneArticle);
